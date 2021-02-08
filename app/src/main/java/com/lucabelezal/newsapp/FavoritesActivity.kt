@@ -3,9 +3,9 @@ package com.lucabelezal.newsapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class FavoriteActivity : AppCompatActivity() {
+class FavoritesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorite)
+        setContentView(R.layout.activity_favorites)
     }
 }
