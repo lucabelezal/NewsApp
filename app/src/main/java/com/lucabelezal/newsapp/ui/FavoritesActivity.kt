@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.lucabelezal.newsapp.R
 
-class FavoritesActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorites)
+class FavoritesActivity: AbstractActivity() {
+    override fun getLayout(): Int {
+        return R.layout.activity_favorites
+    }
+
+    override fun onInject() {
+        TODO("Not yet implemented")
     }
 }
