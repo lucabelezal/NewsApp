@@ -1,11 +1,12 @@
-package com.lucabelezal.newsapp
+package com.lucabelezal.newsapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lucabelezal.newsapp.R
 
-class FavoritesActivity : AppCompatActivity() {
+class NewsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_favorites)
+        setContentView(R.layout.activity_news)
     }
 }

@@ -1,7 +1,8 @@
-package com.lucabelezal.newsapp
+package com.lucabelezal.newsapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.lucabelezal.newsapp.R
 
 class SearchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
