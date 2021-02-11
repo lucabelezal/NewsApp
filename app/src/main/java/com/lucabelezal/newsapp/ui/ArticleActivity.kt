@@ -9,7 +9,5 @@ class ArticleActivity: AbstractActivity() {
         return R.layout.activity_article
     }
 
-    override fun onInject() {
-        TODO("Not yet implemented")
-    }
+    override fun onInject() {}
 }

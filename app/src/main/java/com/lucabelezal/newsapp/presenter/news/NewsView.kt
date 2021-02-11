@@ -5,8 +5,8 @@ import com.lucabelezal.newsapp.model.NewsResponse
 
 interface NewsView {
     interface View {
-        fun showProgressBar()
         fun hideProgressBar()
+        fun showProgressBar()
         fun showArticles(articles: List<Article>)
         fun showFailure(message: String)
     }

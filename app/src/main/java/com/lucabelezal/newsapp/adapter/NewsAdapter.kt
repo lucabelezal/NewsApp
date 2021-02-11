@@ -13,33 +13,34 @@ import kotlinx.android.synthetic.main.item_news.view.*
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
-    fun setOnclickListener(listener: ((Article) -> Unit)?) {
-        onItemClickListener = listener
-    }
-
-    private val  differCallback = object: DiffUtil.ItemCallback<Article>() {
+    private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return  oldItem.url == newItem.url
+            return oldItem.url == newItem.url
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return  oldItem == newItem
+            return oldItem == newItem
         }
+
     }
 
     val differ = AsyncListDiffer(this, differCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(
-            LayoutInflater
-                .from(parent.context)
+    fun setOnclickListener(listener: (Article) -> Unit) {
+        onItemClickListener = listener
+    }
+
+    override fun getItemCount(): Int = differ.currentList.size
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(
+            LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_news, parent, false)
         )
-    }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val article = differ.currentList[position]
@@ -47,18 +48,14 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
             Glide.with(this).load(article.urlToImage).into(ivArticleImage)
             tvTitle.text = article.title
             tvDescription.text = article.description
-            tvSource.text = article.author ?: article.source?.name
+            tvSource.text =  article.author ?: article.source?.name
             tvPublishedAt.text = article.publishedAt
 
-            setOnclickListener {
-                onItemClickListener?.let { clickAction ->
-                    clickAction(article)
+            setOnClickListener {
+                onItemClickListener?.let { click ->
+                    click(article)
                 }
             }
         }
-    }
-
-    override fun getItemCount(): Int {
-        return differ.currentList.size
     }
 }

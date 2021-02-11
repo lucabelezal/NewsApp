@@ -1,7 +1,7 @@
 package com.lucabelezal.newsapp.presenter.search
 
+import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.NewsResponse
-import com.lucabelezal.newsapp.model.data.NewsDataSource
 import com.lucabelezal.newsapp.presenter.news.NewsView
 
 class SearchPresenter(

@@ -1,7 +1,7 @@
 package com.lucabelezal.newsapp.presenter.news
 
+import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.NewsResponse
-import com.lucabelezal.newsapp.model.data.NewsDataSource
 
 class NewsPresenter(
     val view: NewsView.View,
@@ -9,18 +9,19 @@ class NewsPresenter(
     ): NewsView.Presenter {
 
     override fun requestAll() {
-        TODO("Not yet implemented")
+       this.view.showProgressBar()
+        this.dataSource.getBreakingNews(this)
     }
 
     override fun onSuccess(newsResponse: NewsResponse) {
-        TODO("Not yet implemented")
+        this.view.showArticles(newsResponse.articles)
     }
 
     override fun onError(message: String) {
-        TODO("Not yet implemented")
+        this.view.showFailure(message)
     }
 
     override fun onComplete() {
-        TODO("Not yet implemented")
+        this.view.hideProgressBar()
     }
 }

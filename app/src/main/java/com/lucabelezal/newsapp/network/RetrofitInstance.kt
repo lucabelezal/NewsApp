@@ -1,6 +1,6 @@
 package com.lucabelezal.newsapp.network
 
-import com.lucabelezal.newsapp.utils.Enviorment.Companion.BASE_URL
+import com.lucabelezal.newsapp.utils.Environment.Companion.BASE_URL
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit

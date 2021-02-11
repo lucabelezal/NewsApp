@@ -9,7 +9,5 @@ class FavoritesActivity: AbstractActivity() {
         return R.layout.activity_favorites
     }
 
-    override fun onInject() {
-        TODO("Not yet implemented")
-    }
+    override fun onInject() {}
 }
