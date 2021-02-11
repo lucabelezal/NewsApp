@@ -4,9 +4,9 @@ import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.NewsResponse
 
 class NewsPresenter(
-    val view: NewsView.View,
+    val view: News.View,
     private val dataSource: NewsDataSource
-    ): NewsView.Presenter {
+    ): News.Presenter {
 
     override fun requestAll() {
        this.view.showProgressBar()

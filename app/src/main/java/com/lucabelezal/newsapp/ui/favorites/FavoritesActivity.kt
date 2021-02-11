@@ -1,8 +1,7 @@
-package com.lucabelezal.newsapp.ui
+package com.lucabelezal.newsapp.ui.favorites
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import com.lucabelezal.newsapp.R
+import com.lucabelezal.newsapp.ui.AbstractActivity
 
 class FavoritesActivity: AbstractActivity() {
     override fun getLayout(): Int {

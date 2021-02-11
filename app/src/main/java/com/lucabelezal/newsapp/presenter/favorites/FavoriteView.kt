@@ -1,4 +1,4 @@
-package com.lucabelezal.newsapp.presenter.favorite
+package com.lucabelezal.newsapp.presenter.favorites
 
 import com.lucabelezal.newsapp.model.Article
 

@@ -1,4 +1,4 @@
-package com.lucabelezal.newsapp.ui
+package com.lucabelezal.newsapp.ui.news
 
 import android.view.View
 import android.widget.Toast
@@ -9,10 +9,11 @@ import com.lucabelezal.newsapp.adapter.NewsAdapter
 import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.NewsPresenter
-import com.lucabelezal.newsapp.presenter.news.NewsView
+import com.lucabelezal.newsapp.presenter.news.News
+import com.lucabelezal.newsapp.ui.AbstractActivity
 import kotlinx.android.synthetic.main.activity_news.*
 
-class NewsActivity: AbstractActivity(), NewsView.View  {
+class NewsActivity: AbstractActivity(), News.View  {
     private lateinit var presenter: NewsPresenter
 
     private val newsAdapter by lazy {

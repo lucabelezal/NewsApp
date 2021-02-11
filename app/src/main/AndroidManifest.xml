@@ -14,11 +14,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NewsApp">
 
-        <activity android:name=".ui.SearchActivity" />
-        <activity android:name=".ui.FavoritesActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.favorites.FavoritesActivity" />
         <activity android:name=".ui.ArticleActivity" />
 
-        <activity android:name=".ui.NewsActivity">
+        <activity android:name=".ui.news.NewsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

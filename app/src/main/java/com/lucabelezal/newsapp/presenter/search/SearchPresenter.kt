@@ -2,12 +2,12 @@ package com.lucabelezal.newsapp.presenter.search
 
 import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.NewsResponse
-import com.lucabelezal.newsapp.presenter.news.NewsView
+import com.lucabelezal.newsapp.presenter.news.News
 
 class SearchPresenter(
-    val view: NewsView.View,
+    val view: News.View,
     private val dataSource: NewsDataSource
-): SearchView.Presenter {
+): Search.Presenter {
 
     override fun search(term: String) {
         TODO("Not yet implemented")

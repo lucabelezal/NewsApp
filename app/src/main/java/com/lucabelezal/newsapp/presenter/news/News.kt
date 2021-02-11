@@ -3,7 +3,7 @@ package com.lucabelezal.newsapp.presenter.news
 import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.model.NewsResponse
 
-interface NewsView {
+interface News {
     interface View {
         fun hideProgressBar()
         fun showProgressBar()

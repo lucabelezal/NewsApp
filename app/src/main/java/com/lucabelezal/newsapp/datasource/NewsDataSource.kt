@@ -1,13 +1,13 @@
 package com.lucabelezal.newsapp.datasource
 
 import com.lucabelezal.newsapp.network.RetrofitInstance
-import com.lucabelezal.newsapp.presenter.news.NewsView
+import com.lucabelezal.newsapp.presenter.news.News
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 class NewsDataSource {
-    fun getBreakingNews(completion: NewsView.Presenter) {
+    fun getBreakingNews(completion: News.Presenter) {
         GlobalScope.launch(Dispatchers.Main) {
             val response = RetrofitInstance.api.getBreakingNews(countryCode = "br")
             if (response.isSuccessful) {
