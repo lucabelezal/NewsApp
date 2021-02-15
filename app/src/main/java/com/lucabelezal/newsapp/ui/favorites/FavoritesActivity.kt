@@ -1,6 +1,8 @@
 package com.lucabelezal.newsapp.ui.favorites
 
 import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -8,24 +10,28 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.lucabelezal.newsapp.R
 import com.lucabelezal.newsapp.adapter.NewsAdapter
+import com.lucabelezal.newsapp.databinding.ActivityFavoritesBinding
 import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.favorites.FavoritePresenter
 import com.lucabelezal.newsapp.presenter.favorites.FavoriteView
 import com.lucabelezal.newsapp.ui.article.ArticleActivity
-import com.lucabelezal.newsapp.ui.base.AbstractActivity
-import kotlinx.android.synthetic.main.activity_favorites.*
 
-class FavoritesActivity: AbstractActivity(), FavoriteView.View {
+
+class FavoritesActivity: AppCompatActivity(), FavoriteView.View {
+
+    private lateinit var binding: ActivityFavoritesBinding
+    private lateinit var presenter: FavoritePresenter
+
     private val favoritesAdapter by lazy {
         NewsAdapter()
     }
 
-    private lateinit var presenter: FavoritePresenter
-
-    override fun getLayout(): Int = R.layout.activity_favorites
-
-    override fun onInject() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityFavoritesBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
         val dataSource = NewsDataSource(this)
         presenter = FavoritePresenter(this, dataSource)
@@ -64,18 +70,20 @@ class FavoritesActivity: AbstractActivity(), FavoriteView.View {
         }
 
         ItemTouchHelper(itemTouchPerCallback).apply {
-            attachToRecyclerView(rvFavorites)
+            attachToRecyclerView(binding.rvFavorites)
         }
 
         presenter.getAll()
     }
+
+
 
     override fun showArticles(articles: List<Article>) {
         favoritesAdapter.differ.submitList(articles.toList())
     }
 
     private fun configRecycle() {
-        with(rvFavorites) {
+        with(binding.rvFavorites) {
             adapter = favoritesAdapter
             layoutManager = LinearLayoutManager(this@FavoritesActivity)
             addItemDecoration(
