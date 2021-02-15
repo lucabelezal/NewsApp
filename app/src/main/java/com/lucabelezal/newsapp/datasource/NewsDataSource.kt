@@ -57,7 +57,7 @@ class NewsDataSource(context: Context) {
             allArticles = repository.getAll()
 
             withContext(Dispatchers.Main) {
-                completion.showArticles(allArticles)
+                completion.onSuccess(allArticles)
             }
         }
     }
