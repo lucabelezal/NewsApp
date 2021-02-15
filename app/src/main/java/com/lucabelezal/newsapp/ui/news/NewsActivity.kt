@@ -29,7 +29,7 @@ class NewsActivity: AbstractActivity(), News.View  {
     override fun getLayout(): Int = R.layout.activity_news
 
     override fun onInject() {
-        val dataSource = NewsDataSource()
+        val dataSource = NewsDataSource(this)
         presenter = NewsPresenter(this, dataSource)
         presenter.requestAll()
         setupRecycle()

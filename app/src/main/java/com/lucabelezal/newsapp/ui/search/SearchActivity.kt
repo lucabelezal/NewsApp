@@ -27,7 +27,7 @@ class SearchActivity : AbstractActivity(), News.View {
     override fun getLayout(): Int = R.layout.activity_search
 
     override fun onInject() {
-        val dataSource = NewsDataSource()
+        val dataSource = NewsDataSource(this)
         presenter = SearchPresenter(this, dataSource)
         setupRecycle()
         search()
