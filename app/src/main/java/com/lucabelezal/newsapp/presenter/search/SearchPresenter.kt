@@ -10,18 +10,19 @@ class SearchPresenter(
 ): Search.Presenter {
 
     override fun search(term: String) {
-        TODO("Not yet implemented")
+        this.view.showProgressBar()
+        this.dataSource.getSearchNews(term, this)
     }
 
     override fun onSuccess(newsResponse: NewsResponse) {
-        TODO("Not yet implemented")
+        this.view.showArticles(newsResponse.articles)
     }
 
     override fun onError(message: String) {
-        TODO("Not yet implemented")
+        this.view.showFailure(message)
     }
 
     override fun onComplete() {
-        TODO("Not yet implemented")
+        this.view.hideProgressBar()
     }
 }

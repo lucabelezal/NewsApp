@@ -4,7 +4,7 @@ import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.NewsResponse
 
 class NewsPresenter(
-    val view: News.View,
+    private val view: News.View,
     private val dataSource: NewsDataSource
     ): News.Presenter {
 
