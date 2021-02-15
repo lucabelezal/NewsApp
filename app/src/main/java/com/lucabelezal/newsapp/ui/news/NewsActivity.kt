@@ -14,6 +14,7 @@ import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.NewsPresenter
 import com.lucabelezal.newsapp.presenter.news.News
 import com.lucabelezal.newsapp.ui.AbstractActivity
+import com.lucabelezal.newsapp.ui.article.ArticleActivity
 import com.lucabelezal.newsapp.ui.favorites.FavoritesActivity
 import com.lucabelezal.newsapp.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_news.*
@@ -32,6 +33,7 @@ class NewsActivity: AbstractActivity(), News.View  {
         presenter = NewsPresenter(this, dataSource)
         presenter.requestAll()
         setupRecycle()
+        clickAdapter()
     }
 
     override fun hideProgressBar() {
@@ -69,6 +71,14 @@ class NewsActivity: AbstractActivity(), News.View  {
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun clickAdapter() {
+        newsAdapter.setOnclickListener { article ->
+            val intent = Intent(this, ArticleActivity::class.java)
+            intent.putExtra("article", article)
+            startActivity(intent)
+        }
     }
 
     private fun setupRecycle() {

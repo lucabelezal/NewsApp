@@ -1,5 +1,6 @@
 package com.lucabelezal.newsapp.ui.search
 
+import android.content.Intent
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +12,7 @@ import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.News
 import com.lucabelezal.newsapp.presenter.search.SearchPresenter
 import com.lucabelezal.newsapp.ui.AbstractActivity
+import com.lucabelezal.newsapp.ui.article.ArticleActivity
 import com.lucabelezal.newsapp.utils.QueryTextListener
 import kotlinx.android.synthetic.main.activity_news.*
 import kotlinx.android.synthetic.main.activity_search.*
@@ -29,6 +31,7 @@ class SearchActivity : AbstractActivity(), News.View {
         presenter = SearchPresenter(this, dataSource)
         setupRecycle()
         search()
+        clickAdapter()
     }
 
     override fun hideProgressBar() {
@@ -56,6 +59,14 @@ class SearchActivity : AbstractActivity(), News.View {
                     this@SearchActivity, DividerItemDecoration.VERTICAL
                 )
             )
+        }
+    }
+
+    private fun clickAdapter() {
+        newsAdapter.setOnclickListener { article ->
+            val intent = Intent(this, ArticleActivity::class.java)
+            intent.putExtra("article", article)
+            startActivity(intent)
         }
     }
 
