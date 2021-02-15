@@ -76,8 +76,6 @@ class FavoritesActivity: AppCompatActivity(), FavoriteView.View {
         presenter.getAll()
     }
 
-
-
     override fun showArticles(articles: List<Article>) {
         favoritesAdapter.differ.submitList(articles.toList())
     }
