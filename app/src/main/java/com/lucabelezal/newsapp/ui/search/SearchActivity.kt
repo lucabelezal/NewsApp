@@ -11,7 +11,7 @@ import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.News
 import com.lucabelezal.newsapp.presenter.search.SearchPresenter
-import com.lucabelezal.newsapp.ui.AbstractActivity
+import com.lucabelezal.newsapp.ui.base.AbstractActivity
 import com.lucabelezal.newsapp.ui.article.ArticleActivity
 import com.lucabelezal.newsapp.utils.QueryTextListener
 import kotlinx.android.synthetic.main.activity_news.*

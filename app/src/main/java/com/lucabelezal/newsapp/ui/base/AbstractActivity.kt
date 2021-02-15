@@ -1,4 +1,4 @@
-package com.lucabelezal.newsapp.ui
+package com.lucabelezal.newsapp.ui.base
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes

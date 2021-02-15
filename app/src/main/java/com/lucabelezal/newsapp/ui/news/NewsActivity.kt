@@ -13,7 +13,7 @@ import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.NewsPresenter
 import com.lucabelezal.newsapp.presenter.news.News
-import com.lucabelezal.newsapp.ui.AbstractActivity
+import com.lucabelezal.newsapp.ui.base.AbstractActivity
 import com.lucabelezal.newsapp.ui.article.ArticleActivity
 import com.lucabelezal.newsapp.ui.favorites.FavoritesActivity
 import com.lucabelezal.newsapp.ui.search.SearchActivity
