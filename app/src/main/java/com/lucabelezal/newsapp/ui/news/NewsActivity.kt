@@ -1,5 +1,8 @@
 package com.lucabelezal.newsapp.ui.news
 
+import android.content.Intent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -11,6 +14,8 @@ import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.NewsPresenter
 import com.lucabelezal.newsapp.presenter.news.News
 import com.lucabelezal.newsapp.ui.AbstractActivity
+import com.lucabelezal.newsapp.ui.favorites.FavoritesActivity
+import com.lucabelezal.newsapp.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity: AbstractActivity(), News.View  {
@@ -43,6 +48,27 @@ class NewsActivity: AbstractActivity(), News.View  {
 
     override fun showArticles(articles: List<Article>) {
         newsAdapter.differ.submitList(articles.toList())
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_item, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.search_menu -> {
+                Intent(this, SearchActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+            R.id.favorite_menu -> {
+                Intent(this, FavoritesActivity::class.java).apply {
+                    startActivity(this)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun setupRecycle() {
