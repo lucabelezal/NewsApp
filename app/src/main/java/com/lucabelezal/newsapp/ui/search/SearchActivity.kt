@@ -1,32 +1,36 @@
 package com.lucabelezal.newsapp.ui.search
 
 import android.content.Intent
+import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.lucabelezal.newsapp.R
 import com.lucabelezal.newsapp.adapter.NewsAdapter
+import com.lucabelezal.newsapp.databinding.ActivitySearchBinding
 import com.lucabelezal.newsapp.datasource.NewsDataSource
 import com.lucabelezal.newsapp.model.Article
 import com.lucabelezal.newsapp.presenter.news.News
 import com.lucabelezal.newsapp.presenter.search.SearchPresenter
-import com.lucabelezal.newsapp.ui.base.AbstractActivity
 import com.lucabelezal.newsapp.ui.article.ArticleActivity
 import com.lucabelezal.newsapp.utils.QueryTextListener
-import kotlinx.android.synthetic.main.activity_news.*
-import kotlinx.android.synthetic.main.activity_search.*
 
-class SearchActivity : AbstractActivity(), News.View {
+class SearchActivity : AppCompatActivity(), News.View {
+
+    private lateinit var binding: ActivitySearchBinding
     private lateinit var presenter: SearchPresenter
 
     private val newsAdapter by lazy {
         NewsAdapter()
     }
 
-    override fun getLayout(): Int = R.layout.activity_search
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivitySearchBinding.inflate(layoutInflater)
+        val view = binding.root
+        setContentView(view)
 
-    override fun onInject() {
         val dataSource = NewsDataSource(this)
         presenter = SearchPresenter(this, dataSource)
         setupRecycle()
@@ -35,11 +39,11 @@ class SearchActivity : AbstractActivity(), News.View {
     }
 
     override fun hideProgressBar() {
-        rvProgressBarSearch.visibility = View.INVISIBLE
+        binding.rvProgressBarSearch.visibility = View.INVISIBLE
     }
 
     override fun showProgressBar() {
-        rvProgressBarSearch.visibility = View.VISIBLE
+        binding.rvProgressBarSearch.visibility = View.VISIBLE
     }
 
     override fun showFailure(message: String) {
@@ -51,7 +55,7 @@ class SearchActivity : AbstractActivity(), News.View {
     }
 
     private fun setupRecycle() {
-        with(rvNewsSearch) {
+        with(binding.rvNewsSearch) {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(this@SearchActivity)
             addItemDecoration(
@@ -71,12 +75,12 @@ class SearchActivity : AbstractActivity(), News.View {
     }
 
     private fun search() {
-        searchNews.setOnQueryTextListener(
+        binding.searchNews.setOnQueryTextListener(
             QueryTextListener(this.lifecycle) { newText ->
                 newText?.let { query ->
                         if (query.isNotEmpty()) {
                             presenter.search(query)
-                            rvProgressBarSearch.visibility = View.VISIBLE
+                            binding.rvProgressBarSearch.visibility = View.VISIBLE
                         }
                 }
             }
