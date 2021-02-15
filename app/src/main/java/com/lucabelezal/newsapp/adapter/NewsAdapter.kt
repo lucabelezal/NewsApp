@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.lucabelezal.newsapp.R
+import com.lucabelezal.newsapp.databinding.ActivityArticleBinding
+import com.lucabelezal.newsapp.databinding.ItemNewsBinding
 import com.lucabelezal.newsapp.model.Article
 import kotlinx.android.synthetic.main.item_news.view.*
 
 class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
+    inner class ViewHolder(val binding: ItemNewsBinding) : RecyclerView.ViewHolder(binding.root)
 
     private var onItemClickListener: ((Article) -> Unit)? = null
 
@@ -38,22 +40,24 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
-            LayoutInflater.from(parent.context)
-                .inflate(R.layout.item_news, parent, false)
+            ItemNewsBinding.inflate(
+                LayoutInflater.from(parent.context), parent, false
+            )
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val article = differ.currentList[position]
-        holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(ivArticleImage)
-            tvTitle.text = article.title
-            tvDescription.text = article.description
-            tvSource.text =  article.author ?: article.source?.name
-            tvPublishedAt.text = article.publishedAt
+        with(holder) {
+            with(differ.currentList[position]) {
+                Glide.with(holder.itemView.context).load(urlToImage).into(binding.ivArticleImage)
+                binding.tvTitle.text = title
+                binding.tvDescription.text = description
+                binding.tvSource.text =  author ?: source?.name
+                binding.tvPublishedAt.text = publishedAt
 
-            setOnClickListener {
-                onItemClickListener?.let { click ->
-                    click(article)
+                holder.itemView.setOnClickListener {
+                    onItemClickListener?.let { click ->
+                        click(this)
+                    }
                 }
             }
         }
